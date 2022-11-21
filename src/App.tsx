@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { History } from './components/History';
-import { Message } from './components/Message';
-import { Input } from './components/Input';
+import { Chat } from './components/Chat';
+import { MessagesProvider } from './providers/MessagesProvider';
 
 /**
  * 1. Implement state management.
@@ -38,23 +37,9 @@ import { Input } from './components/Input';
  */
 
 const App = () => (
-  <div
-    style={{
-      width: 300,
-      height: 400,
-      display: 'flex',
-      flexDirection: 'column',
-    }}
-  >
-    <History>
-      {/* TODO: replace with dynamic rendering */}
-      <Message direction="incoming">hello user</Message>
-      <Message direction="outgoing">hello bot</Message>
-    </History>
-
-    {/* TODO: send message on submit */}
-    <Input />
-  </div>
+  <MessagesProvider>
+    <Chat />
+  </MessagesProvider>
 );
 
 export default App;

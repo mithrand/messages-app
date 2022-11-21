@@ -1,13 +1,12 @@
 import React, { FC, ReactNode } from 'react';
 
-type MessageDirection = 'incoming' | 'outgoing';
+import type { Message as MessageType } from '../types/Message';
 
-interface MessageProps {
-  direction: MessageDirection;
+type Props = {
   children: ReactNode;
-}
+} & Omit<MessageType, 'text'>;
 
-export const Message: FC<MessageProps> = ({ children, direction }) => (
+export const Message: FC<Props> = ({ children, direction }) => (
   <div
     style={{
       alignSelf: direction === 'incoming' ? 'flex-start' : 'flex-end',

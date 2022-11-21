@@ -1,18 +1,17 @@
 import React, { FC, FormEventHandler, useState } from 'react';
+import { useSubmitMessage } from '../hooks';
 
-interface InputProps {
-  onSubmit?: (message: string) => void;
-}
-
-export const Input: FC<InputProps> = ({ onSubmit }) => {
+export const Input: FC = () => {
+  const onSubmit = useSubmitMessage();
   const [message, setMessage] = useState('');
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (message !== '') {
       setMessage('');
-      onSubmit?.(message);
+      onSubmit(message);
     }
   };
 
