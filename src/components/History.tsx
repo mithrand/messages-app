@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-export const History: FC<{ children: ReactNode}> = ({ children }) => (
+export const History: FC<{ children: ReactNode }> = ({ children }) => (
   <div
     style={{
       display: 'flex',

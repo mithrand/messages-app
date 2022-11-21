@@ -26,7 +26,8 @@
     "start": "react-scripts start",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix",
     "typecheck": "tsc -p ./tsconfig.json --noEmit",
-    "test": "npm run lint && npm run typecheck"
+    "test": "npm run lint && npm run typecheck",
+    "prettier": "prettier --write ."
   },
   "browserslist": [
     ">0.2%",

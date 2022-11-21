@@ -29,7 +29,9 @@ export const Input: FC<InputProps> = ({ onSubmit }) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button type="button" style={{ border: '1px solid black', padding: 5 }}>submit</button>
+      <button type="button" style={{ border: '1px solid black', padding: 5 }}>
+        submit
+      </button>
     </form>
   );
 };
