@@ -1,15 +1,10 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { useAddMessage } from '../providers/MessagesProvider';
-import { MessageDirection } from '../types/Message';
+import { createMessage } from '../models/Message';
 
 export const useSubmitMessage = () => {
   const addMessage = useAddMessage();
-  return (message: string) => {
-    addMessage({
-      text: message,
-      direction: MessageDirection.outgoing,
-      id: uuidv4(),
-    });
+  return (messageText: string) => {
+    const message = createMessage(messageText);
+    addMessage(message);
   };
 };

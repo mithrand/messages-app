@@ -7,7 +7,7 @@ import React, {
   useReducer,
 } from 'react';
 import { noop } from '../../constants';
-import { Message } from '../../types/Message';
+import { Message } from '../../models/Message';
 import { addMessage, MessageReducer } from './MessagesReducer';
 import { Actions, State } from './types';
 import { mockMessages } from './__mocks__/messages';

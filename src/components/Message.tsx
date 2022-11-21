@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-import type { Message as MessageType } from '../types/Message';
+import type { Message as MessageType } from '../models/Message';
 
 type Props = {
   children: ReactNode;

@@ -1,16 +1,10 @@
-import { v4 as uuidv4 } from 'uuid';
-
-import { Message, MessageDirection } from '../../../types/Message';
+import {
+  createMessage,
+  Message,
+  MessageDirection,
+} from '../../../models/Message';
 
 export const mockMessages: Message[] = [
-  {
-    direction: MessageDirection.incoming,
-    text: 'hello user',
-    id: uuidv4(),
-  },
-  {
-    direction: MessageDirection.outgoing,
-    text: 'hello bot',
-    id: uuidv4(),
-  },
+  createMessage('hello user', MessageDirection.incoming),
+  createMessage('hello bot'),
 ];

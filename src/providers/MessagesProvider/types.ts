@@ -1,4 +1,4 @@
-import { Message } from '../../types/Message';
+import { Message } from '../../models/Message';
 
 export type State = {
   messages: Message[];

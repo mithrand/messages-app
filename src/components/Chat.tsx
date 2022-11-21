@@ -18,11 +18,16 @@ export const Chat = () => {
     >
       <History>
         {messages.map((message) => (
-          <Message direction={message.direction}>{message.text}</Message>
+          <Message
+            key={message.id}
+            direction={message.direction}
+            id={message.id}
+          >
+            {message.text}
+          </Message>
         ))}
       </History>
 
-      {/* TODO: send message on submit */}
       <Input />
     </div>
   );
