@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-type MessageDirection = "incoming" | "outgoing";
+type MessageDirection = 'incoming' | 'outgoing';
 
 interface MessageProps {
   direction: MessageDirection;
@@ -12,10 +12,10 @@ export const Message: FC<MessageProps> = (props) => {
   return (
     <div
       style={{
-        alignSelf: direction === "incoming" ? "flex-start" : "flex-end",
-        border: "1px solid black",
+        alignSelf: direction === 'incoming' ? 'flex-start' : 'flex-end',
+        border: '1px solid black',
         padding: 5,
-        borderRadius: 5
+        borderRadius: 5,
       }}
     >
       {props.children}

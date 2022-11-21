@@ -1,6 +1,6 @@
-import { History } from "./components/History";
-import { Message } from "./components/Message";
-import { Input } from "./components/Input";
+import { History } from './components/History';
+import { Message } from './components/Message';
+import { Input } from './components/Input';
 
 /**
  * 1. Implement state management.
@@ -41,8 +41,8 @@ export default function App() {
       style={{
         width: 300,
         height: 400,
-        display: "flex",
-        flexDirection: "column"
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <History>

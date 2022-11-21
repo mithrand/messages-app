@@ -1,0 +1,29 @@
+{
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": ["airbnb", "airbnb-typescript", "prettier"],
+  "plugins": [],
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "react/function-component-definition": [
+      1,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
+  },
+  "globals": {
+    "fetch": false,
+    "Iterator": true,
+    "Generator": true,
+    "browser": true,
+    "$": true,
+    "$$": true
+  }
+}
