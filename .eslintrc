@@ -11,12 +11,15 @@
   },
   "rules": {
     "react/function-component-definition": [
-      1,
+      "error",
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
-    ]
+    ],
+    "import/prefer-default-export": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "react/require-default-props": "off"
   },
   "globals": {
     "fetch": false,

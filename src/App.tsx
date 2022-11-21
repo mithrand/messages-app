@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { History } from './components/History';
 import { Message } from './components/Message';
 import { Input } from './components/Input';
@@ -35,8 +37,7 @@ import { Input } from './components/Input';
  * When the message history is "full", it should automatically scroll to the bottom when new content arrives.
  */
 
-export default function App() {
-  return (
+const App = () => (
     <div
       style={{
         width: 300,
@@ -54,5 +55,6 @@ export default function App() {
       {/* TODO: send message on submit */}
       <Input />
     </div>
-  );
-}
+  )
+
+export default App

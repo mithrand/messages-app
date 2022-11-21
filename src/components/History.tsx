@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
-export const History: FC = (props) => (
+export const History: FC<{ children: ReactNode}> = ({ children }) => (
   <div
     style={{
       display: 'flex',
@@ -12,6 +12,6 @@ export const History: FC = (props) => (
       overflow: 'auto',
     }}
   >
-    {props.children}
+    {children}
   </div>
 );
