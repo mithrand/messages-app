@@ -28,7 +28,7 @@ export const Input: FC = () => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button type="button" style={{ border: '1px solid black', padding: 5 }}>
+      <button type="submit" style={{ border: '1px solid black', padding: 5 }}>
         submit
       </button>
     </form>
