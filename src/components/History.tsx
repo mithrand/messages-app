@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react';
 
 export const History: FC<{ children: ReactNode }> = ({ children }) => (
   <div
+    role="log"
     style={{
       display: 'flex',
       flexDirection: 'column',
