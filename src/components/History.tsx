@@ -15,10 +15,11 @@ export const History: FC<{ children: ReactNode }> = ({ children }) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        border: '1px solid black',
         padding: 10,
         flexGrow: 1,
         overflow: 'auto',
+        marginBottom: '10px',
+        borderRadius: '8px 8px 0px 0px',
       }}
     >
       {children}

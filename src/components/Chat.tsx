@@ -14,6 +14,10 @@ export const Chat = () => {
         height: 400,
         display: 'flex',
         flexDirection: 'column',
+        padding: '16px',
+        borderRadius: '16px',
+        boxShadow: 'rgb(0 0 0 / 20%) 0px 0px 0.428571rem 0px',
+        fontFamily: 'sans-serif'
       }}
     >
       <History>
@@ -27,7 +31,6 @@ export const Chat = () => {
           </Message>
         ))}
       </History>
-
       <Input />
     </div>
   );
