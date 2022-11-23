@@ -3,7 +3,10 @@ import { SocketClient } from '@cognigy/socket-client';
 import { createMessage, Message, MessageDirection } from '../models/Message';
 import { Logger, logger as defaultLogger } from '../lib/logger';
 
-type CognigyMessage = {
+const { REACT_APP_ENDPOINT_BASE_URL, REACT_APP_ENDPOINT_URL_TOKEN } =
+  process.env;
+
+export type CognigyMessage = {
   text: string;
   data: any;
 };
@@ -14,12 +17,20 @@ type Options = {
   logger?: Logger;
 };
 
-export class MessageSocket {
+export interface IMessageSocketAdaptor {
+  onMessageReceived(cb: (message: Message) => void): void;
+  onStatusChange(cb: (status: string) => void): void;
+  onFinish(cb: () => void): void;
+  sendMessage({ text, ...data }: Message): void;
+  connect(): Promise<void>;
+  disconnect(): void;
+  isConnected(): boolean;
+}
+
+class MessageSocketAdaptor {
   private client: SocketClient | null = null;
 
   private logger: Logger;
-
-  public isConnected: boolean = false;
 
   constructor({ baseUrl, token, logger = defaultLogger }: Options) {
     this.logger = logger;
@@ -46,12 +57,14 @@ export class MessageSocket {
     this.logger.error(`Error on MessageSocket - ${message}`);
 
   public onMessageReceived = (cb: (message: Message) => void) => {
-    this.client?.on('output', (botResponse: CognigyMessage) => {
-      const message = createMessage(botResponse.text, MessageDirection.incoming);
+    this.client?.on('output', (socketMessage: CognigyMessage) => {
+      const message = createMessage(
+        socketMessage.text,
+        MessageDirection.incoming,
+      );
       cb(message);
     });
-  }
-
+  };
 
   public onStatusChange = (cb: (status: string) => void) =>
     this.client?.on('typingStatus', cb);
@@ -73,8 +86,17 @@ export class MessageSocket {
         ),
       );
     }
-    return this.client.connect(false);
+    return this.client.connect(true);
   };
 
-  public disconnect = () => this.client?.disconnect();
+  public disconnect = (): void => {
+    this.client?.disconnect();
+  };
+
+  public isConnected = (): boolean => this.client?.connected || false;
 }
+
+export const messageSocketAdaptor = new MessageSocketAdaptor({
+  baseUrl: REACT_APP_ENDPOINT_BASE_URL,
+  token: REACT_APP_ENDPOINT_URL_TOKEN,
+});

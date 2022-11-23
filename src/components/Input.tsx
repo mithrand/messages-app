@@ -1,7 +1,9 @@
 import React, { FC, FormEventHandler, useState } from 'react';
-import { useSubmitMessage } from '../providers/MessagesProvider';
+import { useSubmitMessage } from '../hooks/useSubmitMessage';
+import { useMessageSocketIsConnected } from '../providers/MessageSocketProvider';
 
 export const Input: FC = () => {
+  const isConnected = useMessageSocketIsConnected();
   const onSubmit = useSubmitMessage();
   const [message, setMessage] = useState('');
 
@@ -23,12 +25,17 @@ export const Input: FC = () => {
       <input
         type="text"
         style={{ flexGrow: 1, border: '1px solid black', padding: 5 }}
-        placeholder="type here"
+        placeholder={isConnected ? 'type here' : 'connecting with agent'}
         autoFocus
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        disabled={!isConnected}
       />
-      <button type="submit" style={{ border: '1px solid black', padding: 5 }}>
+      <button
+        type="submit"
+        style={{ border: '1px solid black', padding: 5 }}
+        disabled={!isConnected}
+      >
         submit
       </button>
     </form>

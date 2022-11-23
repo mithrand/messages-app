@@ -4,10 +4,6 @@ export type State = {
   messages: Message[];
 };
 
-export type Actions = {
-  submitMessage(messageText: string): void;
-};
-
 export enum ActionType {
   addMessage = 'addMessage',
   editMessage = 'editMessage',

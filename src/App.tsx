@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Chat } from './components/Chat';
+import { MessageSocketProvider } from './providers/MessageSocketProvider';
 import { MessagesProvider } from './providers/MessagesProvider';
 
 /**
@@ -38,7 +39,9 @@ import { MessagesProvider } from './providers/MessagesProvider';
 
 const App = () => (
   <MessagesProvider>
-    <Chat />
+    <MessageSocketProvider>
+      <Chat />
+    </MessageSocketProvider>
   </MessagesProvider>
 );
 

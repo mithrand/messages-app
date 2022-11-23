@@ -1,1 +1,1 @@
-export * from './MessageSocket';
+export * from './MessageSocketAdaptor';
