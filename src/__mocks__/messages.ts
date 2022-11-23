@@ -2,7 +2,7 @@ import {
   createMessage,
   Message,
   MessageDirection,
-} from '../../../models/Message';
+} from '../models/Message';
 
 export const mockMessages: Message[] = [
   createMessage('hello user', MessageDirection.incoming),

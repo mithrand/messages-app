@@ -25,7 +25,7 @@ const render = async () => {
   await waitForChatToBeEnabled();
 };
 
-describe('Invite App', () => {
+describe('Chat app', () => {
   beforeEach(() => {
     mockConnect.mockResolvedValue(true);
     mockSendMessage.mockImplementation((text: string, data: any) =>
@@ -38,8 +38,7 @@ describe('Invite App', () => {
   });
 
   it('Renders the app', async () => {
-    render();
-    await waitForChatToBeEnabled();
+    await render();
     const submitButton = getSubmitButton();
     expect(submitButton).toBeInTheDocument();
   });
@@ -60,7 +59,7 @@ describe('Invite App', () => {
     expect(textMessage).toBeInTheDocument();
   });
 
-  it('Receive messages from cognigy and show them in the chat',async () => {
+  it('Receives messages from cognigy and show them in the chat',async () => {
     await render();
     await typeMessage('this is a test message{enter}');
     const sendMessage = withinMessages().getByText('this is a test message');
@@ -68,4 +67,19 @@ describe('Invite App', () => {
     expect(sendMessage).toBeInTheDocument();
     expect(responseMessage).toBeInTheDocument();
   });
+
+  it('Disables inputs while connecting to chat',async () => {
+    renderRtl(<App />);
+    const textInput = getTextInput()
+    const submitButton = getSubmitButton()
+  
+    expect(textInput).toBeDisabled()
+    expect(submitButton).toBeDisabled();
+
+    await waitForChatToBeEnabled();
+
+    expect(textInput).toBeEnabled()
+    expect(submitButton).toBeEnabled();
+  });
+
 });

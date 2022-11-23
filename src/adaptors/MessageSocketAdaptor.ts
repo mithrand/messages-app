@@ -3,9 +3,6 @@ import { SocketClient } from '@cognigy/socket-client';
 import { createMessage, Message, MessageDirection } from '../models/Message';
 import { Logger, logger as defaultLogger } from '../lib/logger';
 
-const { REACT_APP_ENDPOINT_BASE_URL, REACT_APP_ENDPOINT_URL_TOKEN } =
-  process.env;
-
 export type CognigyMessage = {
   text: string;
   data: any;
@@ -19,15 +16,13 @@ type Options = {
 
 export interface IMessageSocketAdaptor {
   onMessageReceived(cb: (message: Message) => void): void;
-  onStatusChange(cb: (status: string) => void): void;
-  onFinish(cb: () => void): void;
   sendMessage({ text, ...data }: Message): void;
   connect(): Promise<void>;
   disconnect(): void;
-  isConnected(): boolean;
+  isConnected(): boolean; 
 }
 
-class MessageSocketAdaptor {
+export class MessageSocketAdaptor implements  IMessageSocketAdaptor {
   private client: SocketClient | null = null;
 
   private logger: Logger;
@@ -66,11 +61,6 @@ class MessageSocketAdaptor {
     });
   };
 
-  public onStatusChange = (cb: (status: string) => void) =>
-    this.client?.on('typingStatus', cb);
-
-  public onFinish = (cb: () => void) => this.client?.on('finalPing', cb);
-
   public sendMessage = ({ text, ...data }: Message) => {
     if (!this.client) {
       this.logger.error('MessageSocket - client is not initilized');
@@ -95,8 +85,3 @@ class MessageSocketAdaptor {
 
   public isConnected = (): boolean => this.client?.connected || false;
 }
-
-export const messageSocketAdaptor = new MessageSocketAdaptor({
-  baseUrl: REACT_APP_ENDPOINT_BASE_URL,
-  token: REACT_APP_ENDPOINT_URL_TOKEN,
-});
