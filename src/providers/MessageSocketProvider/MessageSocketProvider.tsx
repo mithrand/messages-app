@@ -12,7 +12,7 @@ import { MessageSocketAdaptor } from '../../adaptors/MessageSocketAdaptor';
 
 const { REACT_APP_ENDPOINT_BASE_URL, REACT_APP_ENDPOINT_URL_TOKEN } =
   process.env;
-  
+
 export const messageSocketAdaptor = new MessageSocketAdaptor({
   baseUrl: REACT_APP_ENDPOINT_BASE_URL,
   token: REACT_APP_ENDPOINT_URL_TOKEN,

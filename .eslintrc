@@ -3,7 +3,7 @@
     "project": "./tsconfig.json"
   },
   "extends": ["airbnb", "airbnb-typescript", "prettier"],
-  "plugins": [],
+  "plugins": ["cypress"],
   "env": {
     "es6": true,
     "node": true,
@@ -19,7 +19,8 @@
     ],
     "import/prefer-default-export": "off",
     "jsx-a11y/no-autofocus": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-plusplus": "off"
   },
   "globals": {
     "fetch": false,

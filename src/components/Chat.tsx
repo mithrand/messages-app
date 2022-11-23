@@ -17,7 +17,7 @@ export const Chat = () => {
         padding: '16px',
         borderRadius: '16px',
         boxShadow: 'rgb(0 0 0 / 20%) 0px 0px 0.428571rem 0px',
-        fontFamily: 'sans-serif'
+        fontFamily: 'sans-serif',
       }}
     >
       <History>

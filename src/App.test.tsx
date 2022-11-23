@@ -59,27 +59,28 @@ describe('Chat app', () => {
     expect(textMessage).toBeInTheDocument();
   });
 
-  it('Receives messages from cognigy and show them in the chat',async () => {
+  it('Receives messages from cognigy and show them in the chat', async () => {
     await render();
     await typeMessage('this is a test message{enter}');
     const sendMessage = withinMessages().getByText('this is a test message');
-    const responseMessage = withinMessages().getByText('You said: this is a test message');
+    const responseMessage = withinMessages().getByText(
+      'You said: this is a test message',
+    );
     expect(sendMessage).toBeInTheDocument();
     expect(responseMessage).toBeInTheDocument();
   });
 
-  it('Disables inputs while connecting to chat',async () => {
+  it('Disables inputs while connecting to chat', async () => {
     renderRtl(<App />);
-    const textInput = getTextInput()
-    const submitButton = getSubmitButton()
-  
-    expect(textInput).toBeDisabled()
+    const textInput = getTextInput();
+    const submitButton = getSubmitButton();
+
+    expect(textInput).toBeDisabled();
     expect(submitButton).toBeDisabled();
 
     await waitForChatToBeEnabled();
 
-    expect(textInput).toBeEnabled()
+    expect(textInput).toBeEnabled();
     expect(submitButton).toBeEnabled();
   });
-
 });

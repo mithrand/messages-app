@@ -19,10 +19,10 @@ export interface IMessageSocketAdaptor {
   sendMessage({ text, ...data }: Message): void;
   connect(): Promise<void>;
   disconnect(): void;
-  isConnected(): boolean; 
+  isConnected(): boolean;
 }
 
-export class MessageSocketAdaptor implements  IMessageSocketAdaptor {
+export class MessageSocketAdaptor implements IMessageSocketAdaptor {
   private client: SocketClient | null = null;
 
   private logger: Logger;

@@ -2,10 +2,9 @@ import React, { FC, ReactNode, useRef } from 'react';
 import { useScrollToBotonOnNewMessage } from '../hooks/useScrollOnNewMessage';
 
 export const History: FC<{ children: ReactNode }> = ({ children }) => {
+  const divRef = useRef<HTMLDivElement>(null);
 
-  const divRef = useRef<HTMLDivElement>(null)
-
-  useScrollToBotonOnNewMessage(divRef)
+  useScrollToBotonOnNewMessage(divRef);
 
   return (
     <div
@@ -25,4 +24,4 @@ export const History: FC<{ children: ReactNode }> = ({ children }) => {
       {children}
     </div>
   );
-}
+};
