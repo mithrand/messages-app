@@ -5,39 +5,51 @@ import React, {
   useContext,
   useMemo,
   useReducer,
+  useCallback,
 } from 'react';
 import { noop } from '../../constants';
-import { Message } from '../../models/Message';
-import { addMessage, MessageReducer } from './MessagesReducer';
+import {
+  receiveMessageDispatcher,
+  submitMessageDispatcher,
+} from './dispatchers';
+import { MessageReducer } from './MessagesReducer';
 import { Actions, State } from './types';
-import { mockMessages } from './__mocks__/messages';
+import { useMessageSocket } from './useMessageSocket';
 
 const StateContext = createContext<State>({
   messages: [],
 });
 
 const ActionsContext = createContext<Actions>({
-  addMessage: noop,
+  submitMessage: noop,
 });
 
 type Props = {
   children: ReactNode;
-  previousMessages?: Message[];
 };
 
 export const MessagesProvider: FC<Props> = ({
   children,
-  previousMessages = [],
 }) => {
+  
   const [state, dispatch] = useReducer(MessageReducer, {
-    messages: [...previousMessages, ...mockMessages],
+    messages: [],
+  });
+
+  const receiveMessage = useCallback(
+    receiveMessageDispatcher(dispatch),
+    [dispatch],
+  );
+
+  const { sendMessage } = useMessageSocket({
+    onMessageReceived: receiveMessage,
   });
 
   const actions: Actions = useMemo(
     () => ({
-      addMessage: (message: Message) => dispatch(addMessage(message)),
+      submitMessage: submitMessageDispatcher(dispatch, sendMessage),
     }),
-    [dispatch],
+    [dispatch, sendMessage],
   );
 
   return (
@@ -50,4 +62,4 @@ export const MessagesProvider: FC<Props> = ({
 };
 
 export const useMessages = () => useContext(StateContext).messages;
-export const useAddMessage = () => useContext(ActionsContext).addMessage;
+export const useSubmitMessage = () => useContext(ActionsContext).submitMessage;

@@ -10,7 +10,6 @@ const getSubmitButton = () => screen.getByText(/submit/i);
 const withinMessages = () => within(screen.getByRole('log'));
 
 describe('Invite App', () => {
-  
   it('Renders the app', () => {
     render(<App />);
     const submitButton = getSubmitButton();
@@ -40,5 +39,4 @@ describe('Invite App', () => {
     const textMessage = withinMessages().getByText('this is a test message');
     expect(textMessage).toBeInTheDocument();
   });
-
 });

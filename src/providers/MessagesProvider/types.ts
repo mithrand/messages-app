@@ -5,7 +5,7 @@ export type State = {
 };
 
 export type Actions = {
-  addMessage(message: Message): void;
+  submitMessage(messageText: string): void;
 };
 
 export enum ActionType {

@@ -1,5 +1,5 @@
 import React, { FC, FormEventHandler, useState } from 'react';
-import { useSubmitMessage } from '../hooks';
+import { useSubmitMessage } from '../providers/MessagesProvider';
 
 export const Input: FC = () => {
   const onSubmit = useSubmitMessage();
