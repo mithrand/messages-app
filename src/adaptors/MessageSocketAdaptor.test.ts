@@ -1,5 +1,5 @@
 import { createMessage } from '../models/Message';
-import { mockOnError, mockSendMessage } from '../__mocks__/SocketClient';
+import { mockOnError } from '../__mocks__/SocketClient';
 
 import { MessageSocketAdaptor } from './MessageSocketAdaptor';
 
@@ -42,6 +42,7 @@ describe('MessageSocketAdaptor', () => {
       token: 'token',
       logger: console,
     });
+    expect(adaptor).toBeDefined();
     mockOnError(new Error('this is a test error'));
     expect(console.error).toHaveBeenCalledWith(
       'Error on MessageSocket - this is a test error',
@@ -63,14 +64,20 @@ describe('MessageSocketAdaptor', () => {
     );
   });
 
-  it('logs an error when connecting and client is not initialized', () => {
+  it('logs an error when connecting and client is not initialized', async () => {
     const adaptor = new MessageSocketAdaptor({
       baseUrl: '',
       token: '',
       logger: console,
     });
 
-    expect(adaptor.connect).rejects
-
+    try {
+      await adaptor.connect();
+      throw new Error('function triggered');
+    } catch (err) {
+      expect((err as Error).message).toBe(
+        'MessageSocket - Error connecting to messageSocket, client has not been initilized',
+      );
+    }
   });
 });
