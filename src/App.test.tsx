@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event';
 import {
   mockConnect,
   mockSendMessage,
-  mockOnMessageReceived,
+  triggerMessageReceived,
 } from './__mocks__/SocketClient';
 
 import App from './App';
@@ -29,7 +29,8 @@ describe('Chat app', () => {
   beforeEach(() => {
     mockConnect.mockResolvedValue(true);
     mockSendMessage.mockImplementation((text: string, data: any) =>
-      mockOnMessageReceived({ text: `You said: ${text}`, ...data }),
+      // for simplify testming bot will always respond back "You said: ..."
+      triggerMessageReceived({ text: `You said: ${text}`, ...data }),
     );
   });
 

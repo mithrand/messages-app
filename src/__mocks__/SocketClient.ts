@@ -9,30 +9,30 @@ export const mockState = { connected: false };
 export const mockSendMessage = jest.fn();
 export const mockConnect = jest.fn();
 export const mockDisconnect = jest.fn();
-export let mockOnMessageReceived: (message: CognigyMessage) => void = noop;
-export let mockOnError: (error: { message: string }) => void = noop;
-export let mockOnStatusChange: (status: string) => void = noop;
-export let mockConnectionFinished: () => void = noop;
+export let triggerMessageReceived: (message: CognigyMessage) => void = noop;
+export let triggerError: (error: { message: string }) => void = noop;
+export let triggerStatusChange: (status: string) => void = noop;
+export let triggerConnectionFinished: () => void = noop;
 
 export class SocketClient {
   public on(event: string, cb: (...args: any[]) => void): void {
     if (event === 'output') {
-      mockOnMessageReceived = cb;
+      triggerMessageReceived = cb;
       return;
     }
 
     if (event === 'error') {
-      mockOnError = cb;
+      triggerError = cb;
       return;
     }
 
     if (event === 'typingStatus') {
-      mockOnStatusChange = cb;
+      triggerStatusChange = cb;
       return;
     }
 
     if (event === 'finalPing') {
-      mockConnectionFinished = cb;
+      triggerConnectionFinished = cb;
     }
   }
 

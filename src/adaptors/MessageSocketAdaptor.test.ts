@@ -1,5 +1,5 @@
 import { createMessage } from '../models/Message';
-import { mockOnError } from '../__mocks__/SocketClient';
+import { triggerError } from '../__mocks__/SocketClient';
 
 import { MessageSocketAdaptor } from './MessageSocketAdaptor';
 
@@ -43,7 +43,7 @@ describe('MessageSocketAdaptor', () => {
       logger: console,
     });
     expect(adaptor).toBeDefined();
-    mockOnError(new Error('this is a test error'));
+    triggerError(new Error('this is a test error'));
     expect(console.error).toHaveBeenCalledWith(
       'Error on MessageSocket - this is a test error',
     );
